@@ -23,20 +23,17 @@ class Mouv(var montant:Float,var sign:Int,var cat:String, var sender_receiver:St
 
     fun comparedate( l1:List<Int>, l2:List<Int>):Int{
         
-        if(l1[2].compareTo(l2[2])<0){
-            return -1
+        if(l1[2].compareTo(l2[2])!=0){
+            return l1[2].compareTo(l2[2])
         }
-        else if(l1[2].compareTo(l2[2])>0){return 1}
         else{
-            if(l1[1].compareTo(l2[1])<0){
-                return -1
+            if(l1[1].compareTo(l2[1])!=0){
+                return l1[1].compareTo(l2[1])
             }
-            else if(l1[1].compareTo(l2[1])>0){return 1}
             else{
-                if(l1[0].compareTo(l2[0])<0){
-                    return -1
+                if(l1[0].compareTo(l2[0])!=0){
+                    return l1[0].compareTo(l2[0])
                 }
-                else if(l1[0].compareTo(l2[0])>0){return 1}
                 else{
                     return 0
                 }
