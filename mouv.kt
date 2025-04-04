@@ -1,10 +1,10 @@
 
 
 import kotlin.math.sign
-class Mouv(var montant:Float,var sign:Int,var cat:String, var sender_receiver:String){
+class Mouv(var montant:Double,var sign:Int,var cat:String, var sender_receiver:String,var date:List<Int>){
    
 
-    fun get_montant():Float{
+    fun get_montant():Double{
         return montant
     }
    
@@ -21,18 +21,18 @@ class Mouv(var montant:Float,var sign:Int,var cat:String, var sender_receiver:St
         return sender_receiver
     }
 
-    fun comparedate( l1:List<Int>, l2:List<Int>):Int{
+    fun comparedate(  l2:List<Int>):Int{
         
-        if(l1[2].compareTo(l2[2])!=0){
-            return l1[2].compareTo(l2[2])
+        if(date[2].compareTo(l2[2])!=0){
+            return date[2].compareTo(l2[2])
         }
         else{
-            if(l1[1].compareTo(l2[1])!=0){
-                return l1[1].compareTo(l2[1])
+            if(date[1].compareTo(l2[1])!=0){
+                return date[1].compareTo(l2[1])
             }
             else{
-                if(l1[0].compareTo(l2[0])!=0){
-                    return l1[0].compareTo(l2[0])
+                if(date[0].compareTo(l2[0])!=0){
+                    return date[0].compareTo(l2[0])
                 }
                 else{
                     return 0
