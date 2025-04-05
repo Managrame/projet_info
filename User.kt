@@ -15,13 +15,13 @@ class User(val name:String, var pwd:String, var accounts:MutableList<Account>, v
     fun changePassword(newPwd:String){
         pwd = newPwd
     }
-    fun getAccounts():MutableList<Account>{
+    fun getUserAccounts():MutableList<Account>{
         return accounts
     }
-    fun getCategories():MutableList<String>{
+    fun getUserCategories():MutableList<String>{
         return categories
     }
-    fun getName():String{
+    fun getUserName():String{
         return name
     }
   
@@ -29,9 +29,15 @@ class User(val name:String, var pwd:String, var accounts:MutableList<Account>, v
     fun categoriesPercentages(account:Account):MutableMap<String,Double>{
         var percentages = mutableMapOf<String,Double>()
         var s=account.sum()
-        for (mouv in account.history){
-            percentages[mouv.cat] = mouv.montant/s
-        }
+        if (s == 0.0) return percentages
+
+    for (mouv in account.history) {
+        percentages[mouv.cat] = (percentages[mouv.cat] ?: 0.0) + mouv.montant
+    }
+
+    for ((cat, montant) in percentages) {
+        percentages[cat] = montant / s
+    }
         return percentages
     }
 

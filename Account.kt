@@ -37,8 +37,8 @@ class Account(val accountNumber: Int) {
     fun ordered_by_date(){
         var i =history.size;
         while (i>1) {
-            for(j in 0..i-1 ){
-                   if(history.get(j).comparedate(history.get(j+1).date)<0)
+            for(j in 1..i-1 ){
+                   if(history.get(j-1).comparedate(history.get(j).date)<0)
                    swap(j, j+1)
             }
             i=i-1;
@@ -56,11 +56,12 @@ class Account(val accountNumber: Int) {
             }
         }
         var m=l.sum()/l.size
-        var s=mutableListOf<>()
+        var s=mutableListOf<Double>()
         var a=balance
-        for (i in 0..l.size) {
-            s.add(a)
+        for (i in 0 until l.size) {
             a=a+m
+            s.add(a)
+            
         }
       
         return s
