@@ -1,5 +1,6 @@
 import kotlin.collections.mutableListOf
 import kotlin.collections.mutableListOf
+import kotlin.Int
 
 class Account(val accountNumber: Int) {
     var balance = 0.0
@@ -42,5 +43,26 @@ class Account(val accountNumber: Int) {
             }
             i=i-1;
         }
-}
+    }
+
+
+    fun previsionel(period:List<Int>,cur:List<Int>):MutableList<Double>{
+        ordered_by_date()
+        var l=mutableListOf<Double>()
+        var d=listOf<Int>(cur.get(0)-period.get(0),cur.get(1)-period.get(1),cur.get(2)-period.get(2))
+        for (i in history) {
+            if(i.comparedate(d)>0){
+                l.add(i.get_montant())
+            }
+        }
+        var m=l.sum()/l.size
+        var s=mutableListOf<>()
+        var a=balance
+        for (i in 0..l.size) {
+            s.add(a)
+            a=a+m
+        }
+      
+        return s
+    }
 }
