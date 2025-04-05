@@ -6,7 +6,7 @@ fun main() {
     acc.add_mouv(Mouv(-50.0, -1, "Transport", "Bus", listOf(3, 1, 2024)))
 
     // Création de l'utilisateur
-    val user = User("Alice", "1234", mutableListOf(acc), mutableListOf("Courses", "Transport"))
+    val user = User("Alice", "1234", mutableListOf(acc), mutableListOf("Courses", "Transport","Salaire"))
 
     // Test getName + getAccounts
     println("Test getName: " + (user.getUserName() == "Alice"))
@@ -32,9 +32,15 @@ fun main() {
     println("Test changePassword: " + (user.pwd == "abcd"))
 
     // Test categoriesPercentages
-    val percent = user.categoriesPercentages(acc)
-    println("Test categoriesPercentages: ")
+    val percent = user.categoriesPercentages_depense(acc)
+    println("Test categoriesPercentages_depense: ")
     for ((cat, p) in percent) {
+        println("$cat: ${"%.2f".format(p * 100)}%")
+    }
+
+    val percent1 = user.categoriesPercentages_revenue(acc)
+    println("Test categoriesPercentages_revenue: ")
+    for ((cat, p) in percent1) {
         println("$cat: ${"%.2f".format(p * 100)}%")
     }
 }

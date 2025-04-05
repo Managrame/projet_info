@@ -26,13 +26,14 @@ class User(val name:String, var pwd:String, var accounts:MutableList<Account>, v
     }
   
   
-    fun categoriesPercentages(account:Account):MutableMap<String,Double>{
+    fun categoriesPercentages_depense(account:Account):MutableMap<String,Double>{
         var percentages = mutableMapOf<String,Double>()
         var s=account.sum()
         if (s == 0.0) return percentages
 
     for (mouv in account.history) {
-        percentages[mouv.cat] = (percentages[mouv.cat] ?: 0.0) + mouv.montant
+        if(mouv.get_sign()==-1){
+        percentages[mouv.cat] = (percentages[mouv.cat] ?: 0.0) + mouv.montant}
     }
 
     for ((cat, montant) in percentages) {
@@ -40,5 +41,24 @@ class User(val name:String, var pwd:String, var accounts:MutableList<Account>, v
     }
         return percentages
     }
+
+
+    fun categoriesPercentages_revenue(account:Account):MutableMap<String,Double>{
+        var percentages = mutableMapOf<String,Double>()
+        var s=account.sum()
+        if (s == 0.0) return percentages
+
+    for (mouv in account.history) {
+        if(mouv.get_sign()==1){
+        percentages[mouv.cat] = (percentages[mouv.cat] ?: 0.0) + mouv.montant}
+    }
+
+    for ((cat, montant) in percentages) {
+        percentages[cat] = montant / s
+    }
+        return percentages
+    }
+    
+
 
 }
